@@ -14,9 +14,9 @@
 ##' @importFrom utils modifyList
 ##' @importFrom tidyr gather
 ##' @importFrom rlang enquo
+##' @importFrom rlang quo_text
 ##' @importFrom rlang !!
 ##' @importFrom ggplot2 aes_
-##' @importFrom ggfun get_aes_var
 ##' @importFrom stats as.formula
 ##' @importFrom dplyr bind_rows group_by group_split
 ##' @export
@@ -32,6 +32,12 @@
 ##' ggplot() + geom_scatterpie(aes(x=x, y=y), data=d, cols="letters", long_format=TRUE) + coord_fixed()
 ##' @author Guangchuang Yu
 geom_scatterpie <- function(mapping=NULL, data, cols, pie_scale = 1, sorted_by_radius = FALSE, legend_name = "type", long_format=FALSE, ...) {
+    get_aes_var <- function(mapping, var) {
+        res <- quo_text(mapping[[var]])
+        ## to compatible with ggplot2 v=2.2.2
+        tail(res, 1)
+    }
+    
     if (is.null(mapping))
         mapping <- aes_(x = ~x, y = ~y)
     mapping <- modifyList(mapping,
