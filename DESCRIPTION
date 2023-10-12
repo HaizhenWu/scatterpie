@@ -16,7 +16,6 @@ Depends:
 Imports:
     ggforce,
     rlang,
-    ggfun,
     stats,
     tidyr,
     dplyr,
