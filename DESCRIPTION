@@ -11,7 +11,7 @@ Authors@R: c(
     )
 Description: Creates scatterpie plots, especially useful for plotting pies on a map.
 Depends:
-    R (>= 4.1.0),
+    R (>= 4.0.0),
     ggplot2
 Imports:
     ggforce,
